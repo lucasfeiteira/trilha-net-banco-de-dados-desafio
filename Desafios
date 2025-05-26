@@ -1,0 +1,103 @@
+--1
+SELECT 
+	NOME,
+	ANO
+FROM Filmes
+
+--2
+SELECT 
+	NOME,
+	ANO
+FROM Filmes
+ORDER BY Ano ASC
+
+--3 
+SELECT 
+	NOME,
+	ANO,
+	DURACAO
+FROM Filmes
+WHERE ANO = 1985 AND DURACAO = 116
+
+-- 4
+SELECT 
+	NOME,
+	ANO,
+	DURACAO
+FROM Filmes
+WHERE ANO = 1997
+
+-- 5
+SELECT 
+	NOME,
+	ANO,
+	DURACAO
+FROM Filmes
+WHERE ANO > 2000 
+
+--6
+SELECT 
+	NOME,
+	ANO,
+	DURACAO
+FROM Filmes
+WHERE DURACAO > 100 AND DURACAO < 150
+ORDER BY DURACAO ASC
+
+--7
+SELECT 
+	ANO,
+	COUNT(ANO) AS QUANTIDADE 
+FROM Filmes
+GROUP BY FILMES.ANO
+ORDER BY 2 DESC
+
+--8
+SELECT 
+	Atores.PrimeiroNome,
+	Atores.UltimoNome,
+	Atores.Genero
+FROM Filmes
+INNER JOIN FilmesGenero ON FILMES.ID = FilmesGenero.ID 
+INNER JOIN ElencoFilme ON FILMES.ID = ElencoFilme.ID 
+INNER JOIN Atores ON FILMES.ID = Atores.ID 
+WHERE ATORES.Genero = 'M'
+
+--9
+SELECT 
+	Atores.Id,
+	Atores.PrimeiroNome,
+	Atores.UltimoNome,
+	Atores.Genero
+FROM Atores
+WHERE Atores.Genero = 'F'
+ORDER BY Atores.PrimeiroNome
+
+
+--10
+SELECT 
+	Filmes.Nome as Nome, 
+	Generos.Genero
+FROM Filmes
+INNER JOIN FilmesGenero ON FILMES.ID = FilmesGenero.IdFilme
+INNER JOIN Generos ON FilmesGenero.IdGenero = Generos.ID 
+
+--11
+SELECT 
+	Filmes.Nome as Nome, 
+	Generos.Genero
+FROM Filmes
+INNER JOIN FilmesGenero ON FILMES.ID = FilmesGenero.IdFilme
+INNER JOIN Generos ON FilmesGenero.IdGenero = Generos.ID 
+WHERE Generos.Genero = 'Mistério'
+
+--12
+SELECT 
+	Filmes.Nome,
+	Atores.PrimeiroNome,
+	Atores.UltimoNome,
+	ElencoFilme.Papel
+FROM Filmes
+INNER JOIN ElencoFilme ON FILMES.ID = ElencoFilme.IdFilme 
+INNER JOIN Atores ON ElencoFilme.IdAtor = Atores.Id
+
